@@ -1,0 +1,6 @@
+[package]
+name = "cypher_machine"
+version = "0.1.0"
+authors = ["Marcin Kirsz <marcinkirsz@wp.pl>"]
+
+[dependencies]
