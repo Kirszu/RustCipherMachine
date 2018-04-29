@@ -1,17 +1,22 @@
 use std::io;
 
+
+fn get_input() -> String {
+    let mut input = String::new();;
+        io::stdin().read_line(&mut input)
+        .expect("Failed to read line");
+    return input;
+}
+
 fn main() {
     println!("Welcome to Cipher Machine!");
-
     println!("You can choose beetwen 3 types of ciphers:");
     println!("- Caesar Cipher (1)");
     println!("- Affine Cipher (2)");
     println!("- Vigenere Cipher (3) ");
     println!("Which cipher do you want to use? Press 1, 2 or 3");
 
-    let mut guess = String::new();;
-        io::stdin().read_line(&mut guess)
-        .expect("Failed to read line");
+    let guess = get_input();
     let guess_num: u32 = guess.trim().parse().expect("Not a number!");
 
     match guess_num {
@@ -31,9 +36,7 @@ fn main() {
 fn caesar_main () {
     println!("Do you want to Encryt or Decrypt your word?");
     println!("Press 1 for Encrypt or 2 for Decrypt");
-    let mut encr = String::new();;
-        io::stdin().read_line(&mut encr)
-        .expect("Failed to read line");
+    let encr = get_input();
     let guess_encr: u32 = encr.trim().parse().expect("Not a number!");
 
     match guess_encr {
@@ -50,9 +53,7 @@ fn caesar_main () {
 fn affine_main () {
     println!("Do you want to Encryt or Decrypt your word?");
     println!("Press 1 for Encrypt or 2 for Decrypt");
-    let mut encr = String::new();;
-        io::stdin().read_line(&mut encr)
-        .expect("Failed to read line");
+    let encr = get_input();
     let guess_encr: u32 = encr.trim().parse().expect("Not a number!");
 
     match guess_encr {
@@ -69,9 +70,7 @@ fn affine_main () {
 fn vigenere_main () {
     println!("Do you want to Encryt or Decrypt your word?");
     println!("Press 1 for Encrypt or 2 for Decrypt");
-    let mut encr = String::new();;
-        io::stdin().read_line(&mut encr)
-        .expect("Failed to read line");
+    let encr = get_input();
     let guess_encr: u32 = encr.trim().parse().expect("Not a number!");
 
     match guess_encr {
@@ -87,18 +86,12 @@ fn vigenere_main () {
 
 fn caesar_encrypt () {
     println!("Type your password you want to encrypt");
-    let mut password = String::new();;
-        io::stdin().read_line(&mut password)
-        .expect("Failed to read line");
+    let chars_u8: Vec<u8> = get_vector_input();
 
     println!("Select your key (number between 1 and 26)");
-    let mut key_input = String::new();;
-        io::stdin().read_line(&mut key_input)
-        .expect("Failed to read line");
+    let key_input = get_input();
     let key: u8 = key_input.trim().parse().expect("Not a number!");
 
-    let chars_u8: Vec<u8> = password.into_bytes();
-    let chars_u8 = chars_u8.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
     println!("{:?}", chars_u8);
 
     let mut chars_u8_shifted: Vec<u8> = Vec::new();
@@ -132,18 +125,12 @@ fn caesar_encrypt () {
 
 fn caesar_decrypt () {
     println!("Type your password you want to decrypt");
-    let mut password = String::new();;
-        io::stdin().read_line(&mut password)
-        .expect("Failed to read line");
+    let chars_u8: Vec<u8> = get_vector_input();
 
     println!("Select your key (number between 1 and 26)");
-    let mut key_input = String::new();;
-        io::stdin().read_line(&mut key_input)
-        .expect("Failed to read line");
+    let key_input = get_input();
     let key: u8 = key_input.trim().parse().expect("Not a number!");
 
-    let chars_u8: Vec<u8> = password.into_bytes();
-    let chars_u8 = chars_u8.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
     println!("{:?}", chars_u8);
 
     let mut chars_u8_shifted: Vec<u8> = Vec::new();
@@ -177,24 +164,16 @@ fn caesar_decrypt () {
 
 fn affine_encrypt () {
     println!("Type your password you want to encrypt");
-    let mut password = String::new();;
-        io::stdin().read_line(&mut password)
-        .expect("Failed to read line");
+    let chars_u8: Vec<u8> = get_vector_input();
 
     println!("Type key A");
-    let mut key_a = String::new();;
-        io::stdin().read_line(&mut key_a)
-        .expect("Failed to read line");
+    let key_a = get_input();
     let key_a: u32 = key_a.trim().parse().expect("Not a number!");
 
     println!("Type key B");
-    let mut key_b = String::new();;
-        io::stdin().read_line(&mut key_b)
-        .expect("Failed to read line");
+    let key_b = get_input();
     let key_b: u32 = key_b.trim().parse().expect("Not a number!");
 
-    let chars_u8: Vec<u8> = password.into_bytes();
-    let chars_u8 = chars_u8.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
     let mut chars_u8_shifted: Vec<u8> = Vec::new();
 
     for mut byte in chars_u8 {
@@ -216,33 +195,25 @@ fn affine_encrypt () {
 
 fn affine_decrypt () {
     println!("Type your password you want to decrypt");
-    let mut password = String::new();;
-        io::stdin().read_line(&mut password)
-        .expect("Failed to read line");
+    let chars_u8: Vec<u8> = get_vector_input();
 
     println!("Type key A");
-    let mut key_a = String::new();;
-        io::stdin().read_line(&mut key_a)
-        .expect("Failed to read line");
+    let key_a = get_input();
     let key_a: u32 = key_a.trim().parse().expect("Not a number!");
 
     println!("Type key B");
-    let mut key_b = String::new();;
-        io::stdin().read_line(&mut key_b)
-        .expect("Failed to read line");
+    let key_b = get_input();
     let key_b: u32 = key_b.trim().parse().expect("Not a number!");
 
-    let chars_u8: Vec<u8> = password.into_bytes();
-    let chars_u8 = chars_u8.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
     let mut chars_u8_shifted: Vec<u8> = Vec::new();
 
     let mut inv = 0;
     for i in 0..26 {
         let temp = (key_a * i) % 26;
-     if temp == 1 {
-         inv = i;
-         break;
-     }
+        if temp == 1 {
+            inv = i;
+            break;
+        }
     }
 
     for mut byte in chars_u8 {
@@ -264,19 +235,9 @@ fn affine_decrypt () {
 
 fn vigenere_encrypt () {
     println!("Type your password you want to encrypt");
-    let mut password = String::new();;
-        io::stdin().read_line(&mut password)
-        .expect("Failed to read line");
-
-    println!("Type key text");
-    let mut key_text = String::new();;
-        io::stdin().read_line(&mut key_text)
-        .expect("Failed to read line");
-
-    let chars_u8: Vec<u8> = password.into_bytes();
-    let chars_u8 = chars_u8.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
-    let chars_key: Vec<u8> = key_text.into_bytes();
-    let chars_key = chars_key.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
+    let chars_u8: Vec<u8> = get_vector_input();
+    println!("Type your key word");
+    let chars_key: Vec<u8> = get_vector_input();
     let mut chars_key_full: Vec<u8> = Vec::new();
     let mut chars_u8_shifted: Vec<u8> = Vec::new();
 
@@ -311,20 +272,10 @@ fn vigenere_encrypt () {
 }
 
 fn vigenere_decrypt () {
-    println!("Type your password you want to decrypt");
-    let mut password = String::new();;
-        io::stdin().read_line(&mut password)
-        .expect("Failed to read line");
-
-    println!("Type key text");
-    let mut key_text = String::new();;
-        io::stdin().read_line(&mut key_text)
-        .expect("Failed to read line");
-
-    let chars_u8: Vec<u8> = password.into_bytes();
-    let chars_u8 = chars_u8.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
-    let chars_key: Vec<u8> = key_text.into_bytes();
-    let chars_key = chars_key.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
+    println!("Type your password you want to encrypt");
+    let chars_u8: Vec<u8> = get_vector_input();
+    println!("Type your key word");
+    let chars_key: Vec<u8> = get_vector_input();
     let mut chars_key_full: Vec<u8> = Vec::new();
     let mut chars_u8_shifted: Vec<u8> = Vec::new();
 
@@ -356,4 +307,11 @@ fn vigenere_decrypt () {
     println!("{:?}", chars_u8_shifted);
     let result = String::from_utf8_lossy(&chars_u8_shifted);
     println!("Result: {}", result);
+}
+
+fn get_vector_input() -> Vec<u8> {
+    let text = get_input();
+    let v: Vec<u8> = text.into_bytes();
+    let v = v.into_iter().filter(|&i|i != 10 && i != 13).collect::<Vec<_>>();
+    return v;
 }
